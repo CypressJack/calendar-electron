@@ -1,1 +1,37 @@
+:root {
+    --background: #F1FAEE;
+    --event-background: #A8DADC;
+    --accent: #457B9D;
+    --text: #1D3557;
+}
+
+body {
+    background-color: var(--background);
+}
+
+.app h1 {
+    color: var(--text);
+    text-align: center;
+}
+
+.app {
+    margin-right: 15px;
+    margin-left:15px;
+}
+
+.calendar-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.calendar-event {
+    background-color: var(--event-background);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 3px 10px 10px 10px;
+    margin: 10px;
+}
+
 

@@ -7,7 +7,9 @@ function createWindow () {
     height: 600,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    title: "Google Calendar",
+    icon: "dependancies/calendar-logo.png"
   })
 
   //load the index.html from a url

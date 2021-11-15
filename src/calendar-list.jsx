@@ -1,10 +1,30 @@
 import './style.css';
 
-function CalendarList() {
+function CalendarList(props) {
+
+  let eventsList = [];
+
+  for (const singleEvent of props.events) {
+
+    let date = new Date(singleEvent.start.dateTime);
+    date = date.toLocaleString("en-US", {timeZone: "America/Los_Angeles"});
+    const calendarEvent = (
+      <li className="calendar-event">
+        <h3 className="event-name">
+          {singleEvent.summary}
+        </h3>
+        <h4 className="event-start">
+          Start Time: {date}
+        </h4>
+      </li>
+    )
+    eventsList.push(calendarEvent);
+  }
+
   return (
-    <div className="calendar-list">
-      
-    </div>
+    <ul className="calendar-list">
+      {eventsList.map((event)=>{return event})}
+    </ul>
   );
 }
 
