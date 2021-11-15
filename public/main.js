@@ -1,4 +1,6 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron');
+const { makeEventCall } = require('../calendar');
+const path = require('path');
 
 function createWindow () {
   // Create the browser window.
@@ -6,7 +8,9 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: false
     },
     title: "Google Calendar",
     icon: "dependancies/calendar-logo.png"
@@ -21,6 +25,21 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(createWindow)
+
+function sendData(data) {
+    console.log(data);
+}
+
+ipcMain.on('data', (event, arg)=>{
+    makeEventCall((data)=>{
+        event.reply('data-reply', data);
+    });
+    console.log('request received from react', arg);
+});
+
+
+
+
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
